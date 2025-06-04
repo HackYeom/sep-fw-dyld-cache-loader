@@ -1,0 +1,14 @@
+--- a/sep-fw-dyld-cache-loader.py
++++ b/sep-fw-dyld-cache-loader.py
+@@ -796,8 +796,8 @@
+ 
+     fwLenBytes = struct.pack('<Q', fwLen)
+     fwLenOffset = sepFwData.find(fwLenBytes, kernelTextOffset + 8, kernelTextOffset + 0x30)
+-    if fwLenOffset == -1:
+-        RaiseException("[-] GuessOffsetInfo: 3")
++    if fwLenOffset == -1:
+        print("[WARN] GuessOffsetInfo: 3 - fwLenBytes not found. Proceeding with fallback.")
+        fwLenOffset = kernelTextOffset + 0x10  # fallback offset
++     if gDoLog: print("[+] fw len: 0x%X" % (fwLenOffset))
+ 
+     searchZeroStart = fwLenOffset + 8
